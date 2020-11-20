@@ -130,16 +130,55 @@ router.post('/editProfile', [
         initAlert.push(a);
         res.render('customer/home', {alert: initAlert});
     }else{
-        // customerModel.
+        var user={
+            uid: req.session.userProfile.uid,
+            umail: req.body.umail,
+            upass: req.body.upass,
+            uname: req.body.uname,
+            uaddress: req.body.uaddress,
+            uphone: req.body.uphone
+        }
+        customerModel.validateUpdateMail(user.umail,(status)=>{
+            if(status){
+                var a={ 
+                    type: "danger", 
+                    msg: "Profile Update failed. The email '"+user.umail+"' already exists. Try with different email."
+                };
+                var initAlert=[];
+                initAlert.push(a);
+                res.render('customer/home', {alert: initAlert});
+            }else{
+                customerModel.updateProfile(user,(status)=>{
+                    if(status){
+                        var a={ 
+                            type: "success", 
+                            msg: "Profile Updated successfully."
+                        };
+                        var initAlert=[];
+                        initAlert.push(a);
+                        res.render('customer/home', {alert: initAlert});
+                    }else{
+                        var a={ 
+                            type: "danger", 
+                            msg: "Profile Update failed."
+                        };
+                        var initAlert=[];
+                        initAlert.push(a);
+                        res.render('customer/home', {alert: initAlert});
+                    }
+                });
+            }
+        });
+        
 
 
-        var a={ 
-            type: "success", 
-            msg: "Profile Updated successfully."
-        };
-        var initAlert=[];
-        initAlert.push(a);
-        res.render('customer/home', {alert: initAlert});
+        // var a={ 
+        //     type: "success", 
+        //     msg: "Profile Updated successfully."
+        // };
+        // var initAlert=[];
+        // initAlert.push(a);
+        // res.render('customer/home', {alert: initAlert});
     }
 
 });
