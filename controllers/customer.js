@@ -170,15 +170,6 @@ router.post('/editProfile', [
             }
         });
         
-
-
-        // var a={ 
-        //     type: "success", 
-        //     msg: "Profile Updated successfully."
-        // };
-        // var initAlert=[];
-        // initAlert.push(a);
-        // res.render('customer/home', {alert: initAlert});
     }
 
 });
