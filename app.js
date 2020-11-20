@@ -6,6 +6,7 @@ const cookieParser 					= require('cookie-parser');
 const {body, validationResult} 		= require('express-validator');
 
 // const login							= require('./controllers/login');
+const customer						= require('./controllers/customer');
 const logout						= require('./controllers/logout');
 
 const app							= express();
@@ -24,6 +25,7 @@ app.use(exSession({secret: 'secret value', saveUninitialized: true, resave: fals
 
 // app.use('/', login);
 // app.use('/login', login);
+app.use('/customer', customer);
 app.use('/logout', logout);
 
 
