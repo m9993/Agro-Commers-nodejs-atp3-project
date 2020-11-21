@@ -65,60 +65,24 @@
 
 
 
-
+                <%
+                products.forEach( function(i){ %>
                     <div class="d-flex flex-wrap justify-content-center">
                     
                         <div class="card m-4" style="width: 18rem;">
-                            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnyPlpyLPNVJ5e6G1nEcpOnwL6wn_WNwsgMw&usqp=CAU" alt="Card image cap">
+                            <img class="card-img-top" src="<%= i.iimage %>" alt="Card image cap">
                             <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text.</p>
-                            <p class="card-text">Some quick example text.</p>
-                            <p class="card-text">Some quick example text.</p>
-                            <a href="#" class="btn btn-primary">Add to cart</a>
+                            <h5 class="card-title"><%= i.iname %></h5>
+                            <p class="card-text"><b>Price: </b><%= i.iprice %></p>
+                            <p class="card-text"><b>Shop: </b><%= i.shname %></p>
+                            <p class="card-text"><b>Details: </b><%= i.idetails %></p>
+                            <p class="card-text"><b>Status: </b><%= i.istatus %></p>
+                            <a href="#" class="btn btn-primary <% var d='disabled'; if(i.istatus!='available'){%> <%= d %> <%} %>" >Add to cart</a>
                             </div>
                         </div>
-                        <div class="card m-4" style="width: 18rem;">
-                            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6YCxS6pFSVeTEOsjevoGllDwVdUTIeJaH0Q&usqp=CAU" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text.</p>
-                            <p class="card-text">Some quick example text.</p>
-                            <p class="card-text">Some quick example text.</p>
-                            <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                        <div class="card m-4" style="width: 18rem;">
-                            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRur13dcgQbQij6SSQZwvbvhVEwtHUBVCP7tw&usqp=CAU" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text.</p>
-                            <p class="card-text">Some quick example text.</p>
-                            <p class="card-text">Some quick example text.</p>
-                            <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                        <div class="card m-4" style="width: 18rem;">
-                            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFnDKs_XCsJUtATaAFRQQsbtEg0bHMddIh9g&usqp=CAU" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text.</p>
-                            <p class="card-text">Some quick example text.</p>
-                            <p class="card-text">Some quick example text.</p>
-                            <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                        <div class="card m-4" style="width: 18rem;">
-                            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq73B0mwQbIvccLMNfcgHVrdDn9JchPi3sWA&usqp=CAU" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text.</p>
-                            <p class="card-text">Some quick example text.</p>
-                            <p class="card-text">Some quick example text.</p>
-                            <a href="#" class="btn btn-primary">Add to cart</a>
-                            </div>
-                        </div>
-                        
+                <%
+                    }); 
+                %>                             
 
 
                     </div>

@@ -41,6 +41,12 @@ module.exports={
 			}
 		});
 	},
+	getAllProducts: (callback)=>{
+		var sql="select * from shop, items where shop.iid=items.iid";
+        db.getResults(sql, (results)=>{
+			callback(results);
+        });
+	},
 
 
 

@@ -26,8 +26,14 @@ router.get('*',  (req, res, next)=>{
 
 
 router.get('/', (req, res)=>{
-	res.render('customer/home');
+    customerModel.getAllProducts((results)=>{
+        req.session.products=results;
+        console.log(req.session.products);
+        res.render('customer/home',{products: results});
+    });
 });
+
+
 router.post('/', [
     // res.send(req.body.conmessage);
     body('receivermail')
@@ -52,7 +58,7 @@ router.post('/', [
     };
     var initAlert=[];
     initAlert.push(a);
-    res.render('customer/home', {alert: initAlert});
+    res.render('customer/home', {alert: initAlert, products: req.session.products});
 
 
     }else{
@@ -72,7 +78,7 @@ router.post('/', [
                         };
                         var initAlert=[];
                         initAlert.push(a);
-                        res.render('customer/home', {alert: initAlert});
+                        res.render('customer/home', {alert: initAlert, products: req.session.products});
                     }
                 });
             }else{
@@ -82,7 +88,7 @@ router.post('/', [
                 };
                 var initAlert=[];
                 initAlert.push(a);
-                res.render('customer/home', {alert: initAlert});
+                res.render('customer/home', {alert: initAlert, products: req.session.products});
             }
         });
 
@@ -128,7 +134,7 @@ router.post('/editProfile', [
         };
         var initAlert=[];
         initAlert.push(a);
-        res.render('customer/home', {alert: initAlert});
+        res.render('customer/home', {alert: initAlert, products: req.session.products});
     }else{
         var user={
             uid: req.session.userProfile.uid,
@@ -146,7 +152,7 @@ router.post('/editProfile', [
                 };
                 var initAlert=[];
                 initAlert.push(a);
-                res.render('customer/home', {alert: initAlert});
+                res.render('customer/home', {alert: initAlert, products: req.session.products});
             }else{
                 customerModel.updateProfile(user,(status)=>{
                     if(status){
@@ -156,7 +162,7 @@ router.post('/editProfile', [
                         };
                         var initAlert=[];
                         initAlert.push(a);
-                        res.render('customer/home', {alert: initAlert});
+                        res.render('customer/home', {alert: initAlert, products: req.session.products});
                     }else{
                         var a={ 
                             type: "danger", 
@@ -164,7 +170,7 @@ router.post('/editProfile', [
                         };
                         var initAlert=[];
                         initAlert.push(a);
-                        res.render('customer/home', {alert: initAlert});
+                        res.render('customer/home', {alert: initAlert, products: req.session.products});
                     }
                 });
             }
