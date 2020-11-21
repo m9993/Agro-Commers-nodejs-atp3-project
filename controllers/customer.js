@@ -28,7 +28,6 @@ router.get('*',  (req, res, next)=>{
 router.get('/', (req, res)=>{
     customerModel.getAllProducts((results)=>{
         req.session.products=results;
-        console.log(req.session.products);
         res.render('customer/home',{products: results});
     });
 });
@@ -180,6 +179,17 @@ router.post('/editProfile', [
 
 });
 
+router.get('/searchProduct', (req, res)=>{
+	var searchKey= req.query.searchKey;
+	customerModel.searchProduct(searchKey,(results)=>{
+		// console.log(results);
+		res.json({products: results});
+	});
+});
+router.get('/add-to-cart/:iid', (req, res)=>{
+    var productId= req.params.iid;
+    res.send(productId);
+});
 
 
 

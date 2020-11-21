@@ -47,6 +47,13 @@ module.exports={
 			callback(results);
         });
 	},
+	searchProduct: function(searchKey, callback){
+		var sql="select * from shop, items where shop.iid=items.iid and iname like '%"+searchKey+"%'";
+		db.getResults(sql, (results)=>{
+			callback(results);
+		});
+
+	},
 
 
 
