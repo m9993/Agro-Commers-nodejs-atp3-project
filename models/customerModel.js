@@ -77,6 +77,13 @@ module.exports={
 		});
 
 	},
+	getAllNotice: function(callback){
+		var sql="select * from notice";
+		db.getResults(sql, (results)=>{
+			callback(results);
+		});
+
+	},
 
 
 }

@@ -298,6 +298,12 @@ router.get('/email', (req, res)=>{
     });
 
 });
+router.get('/notice', (req, res)=>{
+    customerModel.getAllNotice((results)=>{
+        res.render('customer/notice',{notice: results});
+    });
+
+});
 
 
 module.exports = router;
