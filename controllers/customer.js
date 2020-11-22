@@ -292,7 +292,12 @@ router.post('/cart', [
         });
     }
 });
+router.get('/email', (req, res)=>{
+    customerModel.getAllEmail(req.session.userProfile.umail, (results)=>{
+        res.render('customer/emails',{email: results});
+    });
 
+});
 
 
 module.exports = router;

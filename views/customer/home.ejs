@@ -39,7 +39,7 @@
                <!--Body Section-->
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
-                <a class="float-right mt-2 mt-md-4 mt-lg-5 body-a"><i class="fas fa-history"></i> History</a>
+                <a href="/customer/email" class="float-right mt-2 mt-md-4 mt-lg-5 body-a"><i class="fas fa-envelope"></i> Emails</a>
                 <a href="/customer/cart" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-shopping-cart"></i> Cart</a>
             </div>
             
@@ -73,7 +73,7 @@
                 <%
                 products.forEach( function(i){ %>
                     
-                        <div class="card m-4" style="width: 18rem;">
+                        <div class="card m-4 shadow" style="width: 18rem;">
                             <img class="card-img-top" src="<%= i.iimage %>" alt="Card image cap">
                             <div class="card-body">
                             <h5 class="card-title"><%= i.iname %></h5>
@@ -215,7 +215,7 @@
                                 var d=''; 
                                 if(i.istatus!='available'){d='disabled';}
                                     var cart=
-                                    "<div class='card m-4' style='width: 18rem;'>"
+                                    "<div class='card m-4 shadow' style='width: 18rem;'>"
                                         +"<img class='card-img-top' src='"+i.iimage+"' alt='Card image cap'>"
                                         +"<div class='card-body'>"
                                         +"<h5 class='card-title'>"+i.iname+"</h5>"

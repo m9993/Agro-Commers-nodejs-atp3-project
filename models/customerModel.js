@@ -69,8 +69,14 @@ module.exports={
 				callback(false);
 			}
 		});
-	}
+	},
+	getAllEmail: function(umail, callback){
+		var sql="select * from contact where receivermail='"+umail+"'";
+		db.getResults(sql, (results)=>{
+			callback(results);
+		});
 
+	},
 
 
 }
