@@ -40,7 +40,7 @@
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
                 <a class="float-right mt-2 mt-md-4 mt-lg-5 body-a"><i class="fas fa-history"></i> History</a>
-                <a class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-shopping-cart"></i> Cart</a>
+                <a href="/customer/cart" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-shopping-cart"></i> Cart</a>
             </div>
             
 
@@ -208,7 +208,7 @@
                         url:"/customer/searchProduct",
                         data: {searchKey: key},
                         success:(res)=>{
-                            // alert(res.products[0].iname);
+                            alert(res.products[0]);
                             var data="";
                             
                             res.products.forEach( function(i){

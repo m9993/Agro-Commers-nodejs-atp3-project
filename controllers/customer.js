@@ -2,6 +2,7 @@ const express 	                    = require('express');
 const router 	                    = express.Router();
 const {body, validationResult} 		= require('express-validator');
 const customerModel                 = require.main.require('./models/customerModel');
+const customerCart                 = require.main.require('./models/customerCart');
 
 router.get('*',  (req, res, next)=>{
 	if(req.session.userProfile == undefined){
@@ -186,12 +187,58 @@ router.get('/searchProduct', (req, res)=>{
 		res.json({products: results});
 	});
 });
+router.get('/cart', (req, res)=>{
+    console.log(req.session.cart);
+    res.render('customer/cart', {cartData: req.session.cart});	
+});
 router.get('/add-to-cart/:iid', (req, res)=>{
     var productId= req.params.iid;
-    res.send(productId);
+    customerModel.getById(productId,(results)=>{
+        if(typeof req.session.cart=='undefined'){req.session.cart=[];}
+        
+        var oldCart= req.session.cart;
+        customerCart.add(results[0], oldCart, (results)=>{
+            req.session.cart=results;
+            var a={ 
+                type: "success", 
+                msg: 'Added to cart.'
+            };
+            var initAlert=[];
+            initAlert.push(a);
+            res.render('customer/home', {alert: initAlert, products: req.session.products});
+
+        });
+        
+        
+    });
 });
 
-
+router.get('/reduceByOne/:iid', (req, res)=>{
+    var productId= req.params.iid;
+    customerModel.getById(productId,(results)=>{
+        
+        var oldCart= req.session.cart;
+        customerCart.reduceByOne(results[0], oldCart, (results)=>{
+            req.session.cart=results;
+            res.render('customer/cart',{cartData: req.session.cart});
+        });
+        
+        
+    });
+});
+router.get('/addByOne/:iid', (req, res)=>{
+    var productId= req.params.iid;
+    customerModel.getById(productId,(results)=>{
+        
+        var oldCart= req.session.cart;
+        customerCart.addByOne(results[0], oldCart, (results)=>{
+            req.session.cart=results;
+            res.render('customer/cart',{cartData: req.session.cart});    
+        });
+        
+        
+    });
+});
 
 
 module.exports = router;

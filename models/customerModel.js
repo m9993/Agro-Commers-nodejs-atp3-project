@@ -54,6 +54,16 @@ module.exports={
 		});
 
 	},
+	
+	
+	// cart
+	getById: function(iid, callback){
+		var sql = "select * from items where iid= '"+iid+"'";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
+	// cart
 
 
 
