@@ -54,16 +54,22 @@ module.exports={
 		});
 
 	},
-	
-	
-	// cart
 	getById: function(iid, callback){
 		var sql = "select * from items where iid= '"+iid+"'";
 		db.getResults(sql, function(results){
 			callback(results);
 		});
 	},
-	// cart
+	addInvoice:(order,callback)=>{
+		var sql = "INSERT INTO `invoice`(`uid`, `orderdate`, `subtotal`, `shipmethod`) VALUES ('"+order.uid+"', NOW(), '"+order.subtotal+"', '"+order.shipmethod+"')";
+		db.execute(sql, (status)=>{
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+	}
 
 
 

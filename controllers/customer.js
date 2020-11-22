@@ -188,7 +188,6 @@ router.get('/searchProduct', (req, res)=>{
 	});
 });
 router.get('/cart', (req, res)=>{
-    console.log(req.session.cart);
     res.render('customer/cart', {cartData: req.session.cart});	
 });
 router.get('/add-to-cart/:iid', (req, res)=>{
@@ -220,7 +219,7 @@ router.get('/reduceByOne/:iid', (req, res)=>{
         var oldCart= req.session.cart;
         customerCart.reduceByOne(results[0], oldCart, (results)=>{
             req.session.cart=results;
-            res.render('customer/cart',{cartData: req.session.cart});
+            res.redirect('/customer/cart');
         });
         
         
@@ -233,12 +232,67 @@ router.get('/addByOne/:iid', (req, res)=>{
         var oldCart= req.session.cart;
         customerCart.addByOne(results[0], oldCart, (results)=>{
             req.session.cart=results;
-            res.render('customer/cart',{cartData: req.session.cart});    
+            res.redirect('/customer/cart');  
         });
         
         
     });
 });
+router.post('/cart', [
+    
+    body('shipmethod')
+    .notEmpty()
+    .withMessage('Ship method is required'),
+    body('subtotal')
+    .isDecimal()
+    .withMessage('Subtotal is required & it should be in digits')
+
+    ], (req, res)=>{
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+            var allErrors='';
+        for (var i = 0; i < errors.array().length; i++) {
+            allErrors+=  (i+1) +'. '+errors.array()[i].msg+ '........... ';          
+        }
+
+        var a={ 
+            type: "danger", 
+            msg: allErrors
+        };
+        var initAlert=[];
+        initAlert.push(a);
+        res.render('customer/cart', {alert: initAlert, cartData: req.session.cart});
+    }else{
+        var order={
+            uid: req.session.userProfile.uid,
+            subtotal: req.body.subtotal,
+            shipmethod: req.body.shipmethod,
+        };
+        // res.send(order);
+        customerModel.addInvoice(order, (status)=>{
+            if(status){
+                req.session.cart=undefined;
+                var a={ 
+                    type: "success", 
+                    msg: "Your have ordered successfully"
+                };
+                var initAlert=[];
+                initAlert.push(a);
+                res.render('customer/cart', {alert: initAlert, cartData: req.session.cart});
+            }else{
+                var a={ 
+                    type: "danger", 
+                    msg: "Order failed"
+                };
+                var initAlert=[];
+                initAlert.push(a);
+                res.render('customer/cart', {alert: initAlert, cartData: req.session.cart});
+            }
+        });
+    }
+});
+
 
 
 module.exports = router;
