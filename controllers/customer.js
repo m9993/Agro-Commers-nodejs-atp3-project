@@ -277,10 +277,24 @@ router.post('/cart', [
         // res.send(order);
         customerModel.addInvoice(order, (status)=>{
             if(status){
-            	var info= 'Id: '+order.uid+'\nTotal amount: '+order.subtotal+' taka'+'\nShip method: '+order.shipmethod; 
+                var memo='Order-list\n \n';
+                    var no=1;
+                    var totalPrice=0;
+                    memo+='Item Id->Name->Price->Quantity';
+                    req.session.cart.forEach( function(i){
+                        memo+= '\nNo.';
+                        memo+= no;
+                        memo+= '----------'+i.storedId;
+                        memo+= '----------'+i.storedName;
+                        memo+= '----------'+i.storedPrice;
+                        memo+= '----------'+i.storedQty;
+                        totalPrice+=i.storedPrice;
+                    });
+                    memo+='\nTotal Amount: '+totalPrice+'Taka';
+
                 // pdf
-                doc.pipe(fs.createWriteStream('Order-memo.pdf'));
-                doc.fontSize(16).text(info, 100, 100);
+                doc.pipe(fs.createWriteStream('Order-list.pdf'));
+                doc.fontSize(16).text(memo, 100, 100);
                 doc.end();
                 // pdf
 
