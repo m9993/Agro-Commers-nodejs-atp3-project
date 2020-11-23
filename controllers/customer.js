@@ -3,6 +3,11 @@ const router 	                    = express.Router();
 const {body, validationResult} 		= require('express-validator');
 const customerModel                 = require.main.require('./models/customerModel');
 const customerCart                 = require.main.require('./models/customerCart');
+// pdfkit
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
+const doc = new PDFDocument();
+// pdfkit
 
 router.get('*',  (req, res, next)=>{
 	if(req.session.userProfile == undefined){
@@ -272,6 +277,13 @@ router.post('/cart', [
         // res.send(order);
         customerModel.addInvoice(order, (status)=>{
             if(status){
+            	var info= 'Id: '+order.uid+'\nTotal amount: '+order.subtotal+' taka'+'\nShip method: '+order.shipmethod; 
+                // pdf
+                doc.pipe(fs.createWriteStream('Order-memo.pdf'));
+                doc.fontSize(16).text(info, 100, 100);
+                doc.end();
+                // pdf
+
                 req.session.cart=undefined;
                 var a={ 
                     type: "success", 
