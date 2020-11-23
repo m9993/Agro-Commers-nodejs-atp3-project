@@ -84,6 +84,13 @@ module.exports={
 		});
 
 	},
+	getAllInvoice: function(uid, callback){
+		var sql="select * from invoice where uid='"+uid+"'";
+		db.getResults(sql, (results)=>{
+			callback(results);
+		});
+
+	},
 
 
 }

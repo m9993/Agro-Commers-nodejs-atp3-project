@@ -12,13 +12,13 @@ const doc = new PDFDocument();
 router.get('*',  (req, res, next)=>{
 	if(req.session.userProfile == undefined){
         var p={
-            uid: "1",
-            uname: "abc",
-            uphone: "0123456789",
-            umail: "abc@gmail.com",
+            uid: "2",
+            uname: "Harry",
+            uphone: "12345",
+            umail: "harry@gmail.com",
             uaddress: "dhaka, Bangladesh",
             upass: "123",
-            user_role: "admin"
+            user_role: "customer"
         };
         req.session.userProfile=p;
 		next();
@@ -34,7 +34,7 @@ router.get('*',  (req, res, next)=>{
 router.get('/', (req, res)=>{
     customerModel.getAllProducts((results)=>{
         req.session.products=results;
-        res.render('customer/home',{products: results});
+        res.render('customer/home',{products: results, userProfile: req.session.userProfile});
     });
 });
 
@@ -63,7 +63,7 @@ router.post('/', [
     };
     var initAlert=[];
     initAlert.push(a);
-    res.render('customer/home', {alert: initAlert, products: req.session.products});
+    res.render('customer/home', {alert: initAlert, products: req.session.products, userProfile: req.session.userProfile});
 
 
     }else{
@@ -83,7 +83,7 @@ router.post('/', [
                         };
                         var initAlert=[];
                         initAlert.push(a);
-                        res.render('customer/home', {alert: initAlert, products: req.session.products});
+                        res.render('customer/home', {alert: initAlert, products: req.session.products, userProfile: req.session.userProfile});
                     }
                 });
             }else{
@@ -93,7 +93,7 @@ router.post('/', [
                 };
                 var initAlert=[];
                 initAlert.push(a);
-                res.render('customer/home', {alert: initAlert, products: req.session.products});
+                res.render('customer/home', {alert: initAlert, products: req.session.products, userProfile: req.session.userProfile});
             }
         });
 
@@ -139,7 +139,7 @@ router.post('/editProfile', [
         };
         var initAlert=[];
         initAlert.push(a);
-        res.render('customer/home', {alert: initAlert, products: req.session.products});
+        res.render('customer/home', {alert: initAlert, products: req.session.products, userProfile: req.session.userProfile});
     }else{
         var user={
             uid: req.session.userProfile.uid,
@@ -157,7 +157,7 @@ router.post('/editProfile', [
                 };
                 var initAlert=[];
                 initAlert.push(a);
-                res.render('customer/home', {alert: initAlert, products: req.session.products});
+                res.render('customer/home', {alert: initAlert, products: req.session.products, userProfile: req.session.userProfile});
             }else{
                 customerModel.updateProfile(user,(status)=>{
                     if(status){
@@ -167,7 +167,7 @@ router.post('/editProfile', [
                         };
                         var initAlert=[];
                         initAlert.push(a);
-                        res.render('customer/home', {alert: initAlert, products: req.session.products});
+                        res.render('customer/home', {alert: initAlert, products: req.session.products, userProfile: req.session.userProfile});
                     }else{
                         var a={ 
                             type: "danger", 
@@ -175,7 +175,7 @@ router.post('/editProfile', [
                         };
                         var initAlert=[];
                         initAlert.push(a);
-                        res.render('customer/home', {alert: initAlert, products: req.session.products});
+                        res.render('customer/home', {alert: initAlert, products: req.session.products, userProfile: req.session.userProfile});
                     }
                 });
             }
@@ -193,7 +193,7 @@ router.get('/searchProduct', (req, res)=>{
 	});
 });
 router.get('/cart', (req, res)=>{
-    res.render('customer/cart', {cartData: req.session.cart});	
+    res.render('customer/cart', {cartData: req.session.cart, userProfile: req.session.userProfile});	
 });
 router.get('/add-to-cart/:iid', (req, res)=>{
     var productId= req.params.iid;
@@ -209,7 +209,7 @@ router.get('/add-to-cart/:iid', (req, res)=>{
             };
             var initAlert=[];
             initAlert.push(a);
-            res.render('customer/home', {alert: initAlert, products: req.session.products});
+            res.render('customer/home', {alert: initAlert, products: req.session.products, userProfile: req.session.userProfile});
 
         });
         
@@ -267,7 +267,7 @@ router.post('/cart', [
         };
         var initAlert=[];
         initAlert.push(a);
-        res.render('customer/cart', {alert: initAlert, cartData: req.session.cart});
+        res.render('customer/cart', {alert: initAlert, cartData: req.session.cart, userProfile: req.session.userProfile});
     }else{
         var order={
             uid: req.session.userProfile.uid,
@@ -289,6 +289,7 @@ router.post('/cart', [
                         memo+= '----------'+i.storedPrice;
                         memo+= '----------'+i.storedQty;
                         totalPrice+=i.storedPrice;
+                        no++;
                     });
                     memo+='\nTotal Amount: '+totalPrice+'Taka';
 
@@ -305,7 +306,7 @@ router.post('/cart', [
                 };
                 var initAlert=[];
                 initAlert.push(a);
-                res.render('customer/cart', {alert: initAlert, cartData: req.session.cart});
+                res.render('customer/cart', {alert: initAlert, cartData: req.session.cart, userProfile: req.session.userProfile});
             }else{
                 var a={ 
                     type: "danger", 
@@ -313,20 +314,26 @@ router.post('/cart', [
                 };
                 var initAlert=[];
                 initAlert.push(a);
-                res.render('customer/cart', {alert: initAlert, cartData: req.session.cart});
+                res.render('customer/cart', {alert: initAlert, cartData: req.session.cart, userProfile: req.session.userProfile});
             }
         });
     }
 });
 router.get('/email', (req, res)=>{
     customerModel.getAllEmail(req.session.userProfile.umail, (results)=>{
-        res.render('customer/emails',{email: results});
+        res.render('customer/emails',{email: results, userProfile: req.session.userProfile});
     });
 
 });
 router.get('/notice', (req, res)=>{
     customerModel.getAllNotice((results)=>{
-        res.render('customer/notice',{notice: results});
+        res.render('customer/notice',{notice: results, userProfile: req.session.userProfile});
+    });
+
+});
+router.get('/history', (req, res)=>{
+    customerModel.getAllInvoice(req.session.userProfile.uid,(results)=>{
+        res.render('customer/history',{history: results, userProfile: req.session.userProfile});
     });
 
 });

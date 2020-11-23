@@ -28,7 +28,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a href="#page-top" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fa fa-user mr-1 pr-1" aria-hidden="true"></i>Welcome, (name)</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a href="#page-top" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fa fa-user mr-1 pr-1" aria-hidden="true"></i>Welcome, <%= userProfile.uname %> </a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a href="/customer/editProfile" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fas fa-user-edit mr-1 pr-1"></i>Profile</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a href="#contact" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fas fa-envelope mr-1 pr-1"></i>Contact</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a href="/logout" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fas fa-sign-out-alt mr-1 pr-1"></i>Logout</a></li>
@@ -41,6 +41,7 @@
             <div class="container">
                 <a href="/customer/notice" class="float-right mt-2 mt-md-4 mt-lg-5 body-a"><i class="fas fa-volume-up"></i> Notice</a>
                 <a href="/customer/email" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-envelope"></i> Emails</a>
+                <a href="/customer/history" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-history"></i> History</a>
                 <a href="/customer/cart" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-shopping-cart"></i> Cart</a>
             </div>
             
@@ -78,11 +79,11 @@
                             <img class="card-img-top" src="<%= i.iimage %>" alt="Card image cap">
                             <div class="card-body">
                             <h5 class="card-title"><%= i.iname %></h5>
-                            <p class="card-text"><b>Price: </b><%= i.iprice %> ৳</p>
-                            <p class="card-text"><b>Shop: </b><%= i.shname %></p>
-                            <p class="card-text"><b>Details: </b><%= i.idetails %></p>
-                            <p class="card-text"><b>Status: </b><%= i.istatus %></p>
-                            <a href="/customer/add-to-cart/<%= i.iid %>" class="btn btn-primary <% var d='disabled'; if(i.istatus!='available'){%> <%= d %> <%} %>" >Add to cart</a>
+                            <p class="card-text mb-2"><b>Price: </b><%= i.iprice %> ৳</p>
+                            <p class="card-text mb-2"><b>Shop: </b><%= i.shname %></p>
+                            <p class="card-text mb-2"><b>Details: </b><%= i.idetails %></p>
+                            <p class="card-text mb-2"><b>Status: </b><%= i.istatus %></p>
+                            <a href="/customer/add-to-cart/<%= i.iid %>" class="btn btn-primary px-2 py-1 <% var d='disabled'; if(i.istatus!='available'){%> <%= d %> <%} %>" >Add to cart</a>
                             </div>
                         </div>
                 <%

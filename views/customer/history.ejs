@@ -45,8 +45,8 @@
             <div class="container">
                 <a href="/customer/notice" class="float-right mt-2 mt-md-4 mt-lg-5 body-a"><i class="fas fa-volume-up"></i> Notice</a>
                 <a href="/customer/email" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-envelope"></i> Emails</a>
-                <a href="/customer/history" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-history"></i> History</a>
-                <a href="/customer/cart" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a active"><i class="fas fa-shopping-cart"></i> Cart</a>
+                <a href="/customer/history" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a active"><i class="fas fa-history"></i> History</a>
+                <a href="/customer/cart" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-shopping-cart"></i> Cart</a>
             </div>
         </section>
 
@@ -70,72 +70,32 @@
                 %>
 
 
+                <table class="table table-borderless table-hover shadow">
+                    <thead>
+                      <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Purchase Amount (Taka)</th>
+                        <th scope="col">Ship Method</th>
+                      </tr>
+                    </thead>
+                    <tbody>
 
-                <%
-                var msg='Cart is empty. Please add products.';
-                if(typeof cartData=='undefined'){ %>
-                    <div class="container border text-center h6 py-5" id="disable-cart-msg">
-                        <%= msg %>
-                    </div>
-
-                <% } %>
-
-
-                <%
-                if(typeof cartData!='undefined'){ var totalPrice=0; %>
-                <table class="table-hover">
-                <%
-                cartData.forEach( function(i){ %>
-                <tr class="border">
-                    <td class="px-4 pt-2">
-                        <h6> Product Id-<%= i.storedId %> </h6>
-                    </td>
-                    <td class="px-4 pt-2">    
-                        <h6> <%= i.storedName %> </h6>
-                    </td>
-                    <td class="px-4">
-                        <h6><span class="badge badge-success"><%= i.storedPrice %> ৳</span></h6>
-                    </td>
-                    <td class="px-4 pt-2">
-                        <h5><span>
-                            <a href='/customer/addByOne/<%= i.storedId %>' class="text-dark"><i class="fas fa-caret-square-up"></i></a>
-                            <a href='/customer/reduceByOne/<%= i.storedId %>' class="text-dark ml-3"><i class="fas fa-caret-square-down"></i></a>
-                        </span>
-                        </h5>
-                    </td>
-                    <td class="px-4">
-                        <h6><span class="badge badge-primary"> <%= i.storedQty %> </span></h6>
-                    </td>
-                </tr>
-                   
-                
+                    <% var i=1;
+                    history.forEach( function(std){ %>
+                      <tr>
+                        <th> <%= i %></th>
+                        <td> <%= std.orderdate %></td>
+                        <td> <%= std.subtotal %></td>
+                        <td> <%= std.shipmethod %></td>
+                      </tr>
+                    <% i++;
+                        }); 
+                    %>
                     
-                <% 
-                totalPrice+=i.storedPrice }); %> 
-                <h5 class="mb-2">Total Price:  <span class="text-danger"> <%= totalPrice %> Taka</span></h5>
-                </table> 
-                <div class="p-5 m-5 ">
-                <form class="border shadow p-4" method="post">
-                    <h3 class="mb-3">Order</h3>
-                    <div class="form-group">
-                        <select name="shipmethod" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                            <option selected disabled>Ship method...</option>
-                            <option value="Parcel shipping">Parcel shipping</option>
-                            <option value="Will take from office">Will take from office</option>
-                          </select>
-                    </div>
-                    <div class="form-group">
-                        <input name="subtotal" class="form-control" type="text" placeholder="Readonly input here…" readonly value="<%= totalPrice %>">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Buy now</button>
-                    </div>
-                </form>
-                </div>
-                <%
-                }
-                
-                %>
+                    </tbody>
+                  </table>
+               
                 
                 
                 

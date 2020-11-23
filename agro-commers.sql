@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2020 at 08:56 AM
+-- Generation Time: Nov 23, 2020 at 05:09 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.1.33
 
@@ -78,22 +78,14 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`conid`, `sendermail`, `receivermail`, `conmessage`) VALUES
-(4, 'abc@gmail.com', 'a@gmail.com', 'hi there!'),
-(5, 'abc@gmail.com', 'a@gmail.com', '123'),
-(6, 'abc@gmail.com', 'a@gmail.com', 'aaaaa'),
-(7, 'abc@gmail.com', 'a@gmail.com', 'vvvv'),
-(10, 'abc@gmail.com', 'smith@gmail.com', 'hi smith!'),
-(11, 'abc@gmail.com', 'john@gmail.com', 'q'),
-(12, 'john@gmail.com', 'abc@gmail.com', 'q'),
-(13, 'smith@gmail.com', 'abc@gmail.com', 'hi smith!'),
-(14, 'smith@gmail.com', 'abc@gmail.com', 'hi smith!'),
-(15, 'mina@gmail.com', 'abc@gmail.com', 'q'),
-(16, 'mina@gmail.com', 'abc@gmail.com', 'hiiiiiiiiiiiiii'),
-(17, 'mina@gmail.com', 'abc@gmail.com', 'I have a question'),
-(18, 'smith@gmail.com', 'abc@gmail.com', 'meet me ASAP!'),
-(19, 'smith@gmail.com', 'john@gmail.com', '123'),
-(20, 'abc@gmail.com', 'smith@gmail.com', 'hi smith!'),
-(21, 'alex@gmail.com', 'smith@gmail.com', 'hello!');
+(19, 'smith@gmail.com', 'harry@gmail.com', 'thanks'),
+(22, 'smith@gmail.com', 'harry@gmail.com', 'hello!'),
+(23, 'john@gmail.com', 'harry@gmail.com', 'hi there'),
+(24, 'smith@gmail.com', 'harry@gmail.com', 'hi'),
+(25, 'john@gmail.com', 'harry@gmail.com', 'hi there'),
+(26, 'smith@gmail.com', 'harry@gmail.com', 'hi'),
+(27, 'smith@gmail.com', 'harry@gmail.com', 'Thank you for your purchase'),
+(28, 'harry@gmail.com', 'smith@gmail.com', 'hello!');
 
 -- --------------------------------------------------------
 
@@ -177,32 +169,20 @@ CREATE TABLE `invoice` (
 --
 
 INSERT INTO `invoice` (`invnumber`, `uid`, `orderdate`, `subtotal`, `shipmethod`) VALUES
-(1, 1, '2020-11-21 07:21:34', 1200, 'bkash'),
-(2, 2, '12', 456, 'bkask'),
-(3, 2, '2020-11-22 08:49:06', 1200, 'a'),
-(4, 1, '2020-11-22 09:30:02', 50, 'Parcel shipping'),
-(5, 1, '2020-11-22 09:30:58', 40, 'Parcel shipping'),
-(6, 1, '2020-11-22 09:34:53', 10, 'Parcel shipping'),
-(7, 1, '2020-11-22 09:46:59', 340, 'Will take from office'),
-(8, 1, '2020-11-22 09:48:54', 90, 'Parcel shipping'),
-(9, 1, '2020-11-22 09:49:29', 90, 'Will take from office'),
-(10, 1, '2020-11-22 09:49:39', 100, 'Parcel shipping'),
-(11, 1, '2020-11-22 09:49:50', 50, 'Will take from office'),
-(12, 1, '2020-11-22 09:50:37', 20, 'Parcel shipping'),
-(13, 1, '2020-11-22 09:50:52', 50, 'Parcel shipping'),
-(14, 1, '2020-11-22 09:51:24', 50, 'Parcel shipping'),
-(15, 1, '2020-11-22 09:52:09', 150, 'Parcel shipping'),
-(16, 1, '2020-11-22 09:55:07', 160, 'Parcel shipping'),
-(17, 1, '2020-11-22 09:56:18', 330, 'Parcel shipping'),
-(18, 1, '2020-11-22 10:48:39', 290, 'Will take from office'),
-(19, 1, '2020-11-22 10:59:22', 120, 'Parcel shipping'),
-(20, 1, '2020-11-22 11:31:49', 20, 'Parcel shipping'),
-(21, 1, '2020-11-22 11:43:41', 50, 'Parcel shipping'),
 (22, 2, '2020-11-22 12:34:05', 100, 'Parcel shipping'),
-(23, 1, '2020-11-23 13:45:10', 50, 'Parcel shipping'),
-(24, 1, '2020-11-23 13:48:07', 60, 'Parcel shipping'),
-(25, 1, '2020-11-23 13:50:26', 270, 'Parcel shipping'),
-(26, 1, '2020-11-23 13:51:51', 10, 'Will take from office');
+(27, 2, '2020-11-23 14:09:38', 110, 'Parcel shipping'),
+(28, 2, '2020-11-23 14:12:24', 1010, 'Will take from office'),
+(29, 2, '2020-11-23 14:15:49', 50, 'Parcel shipping'),
+(30, 2, '2020-11-23 14:16:53', 50, 'Parcel shipping'),
+(31, 2, '2020-11-23 14:17:20', 10, 'Will take from office'),
+(32, 2, '2020-11-23 14:18:05', 10, 'Will take from office'),
+(43, 2, '2020-11-23 17:22:43', 110, 'Parcel shipping'),
+(44, 2, '2020-11-23 17:24:27', 70, 'Parcel shipping'),
+(45, 2, '2020-11-23 17:25:47', 10, 'Parcel shipping'),
+(52, 2, '2020-11-23 21:58:00', 50020, 'Will take from office'),
+(53, 2, '2020-11-23 22:05:34', 20, 'Parcel shipping'),
+(54, 2, '2020-11-23 22:06:45', 90, 'Will take from office'),
+(55, 2, '2020-11-23 22:08:20', 70, 'Parcel shipping');
 
 -- --------------------------------------------------------
 
@@ -228,7 +208,8 @@ INSERT INTO `items` (`iid`, `iname`, `iprice`, `idetails`, `istatus`, `iimage`, 
 (1, 'Cocunut', 50, 'very famous', 'not available', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS10GBWw_c6LyxFXe4P41UTR2-FrJrjR7u5WQ&usqp=CAU', 1),
 (2, 'Seeds', 10, 'seeds', 'available', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnyPlpyLPNVJ5e6G1nEcpOnwL6wn_WNwsgMw&usqp=CAU', 1),
 (3, 'Fertilizer', 50, 'Very fertile', 'available', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrZQQOL356za2ULz_8eghmZI3BcRJ1ZGPgNg&usqp=CAU', 1),
-(5, 'Soyabeans', 100, 'Healthy', 'not available', 'https://miro.medium.com/max/1000/0*ahe8XINOHYbtG_lb.jpg', 1);
+(5, 'Soyabeans', 100, 'Healthy', 'not available', 'https://miro.medium.com/max/1000/0*ahe8XINOHYbtG_lb.jpg', 1),
+(6, 'Equipment Machine', 50000, 'Modern Agriculture Technology,Latest', 'available', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_i9EKjWYzy7WDJUpC7Y2wCZEnqPK1TyrUQ&usqp=CAU', 1);
 
 -- --------------------------------------------------------
 
@@ -290,10 +271,11 @@ CREATE TABLE `shop` (
 --
 
 INSERT INTO `shop` (`shid`, `shname`, `cid`, `iid`) VALUES
-(1, 'abcShop', 1, 1),
-(2, 'abcShop', 1, 2),
-(3, 'abcShop', 1, 3),
-(4, 'Shop Soyabeans', 1, 5);
+(1, 'Cocunut Shop', 1, 1),
+(2, 'Seeds Shop', 1, 2),
+(3, 'Fertilizer Shop', 1, 3),
+(4, 'Shop Soyabeans', 1, 5),
+(5, 'Agro Machine Shop', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -317,7 +299,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`uid`, `uname`, `uphone`, `umail`, `uaddress`, `upass`, `user_role`) VALUES
 (1, 'John', 123456789, 'john@gmail.com', 'dhaka, Bangladesh', '123', 'admin'),
-(2, 'Smith', 12345, 'smith@gmail.com', 'dhaka', '123', 'customer');
+(2, 'Harry', 123456789, 'harry@gmail.com', 'dhaka, Bangladesh', '123', 'customer'),
+(4, 'Smith', 123456789, 'smith@gmail.com', 'dhaka, Bangladesh', '123', 'manager');
 
 --
 -- Indexes for dumped tables
@@ -430,7 +413,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `conid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `conid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -454,13 +437,13 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `invnumber` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `invnumber` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `iid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `iid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `notice`
@@ -478,13 +461,13 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `shop`
 --
 ALTER TABLE `shop`
-  MODIFY `shid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `shid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `uid` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

@@ -28,7 +28,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a href="#page-top" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fa fa-user mr-1 pr-1" aria-hidden="true"></i>Welcome, (name)</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a href="#page-top" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fa fa-user mr-1 pr-1" aria-hidden="true"></i>Welcome, <%= userProfile.uname %> </a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a href="/customer/editProfile" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fas fa-user-edit mr-1 pr-1"></i>Profile</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a href="#contact" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fas fa-envelope mr-1 pr-1"></i>Contact</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a href="/logout" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"><i class="fas fa-sign-out-alt mr-1 pr-1"></i>Logout</a></li>
@@ -44,7 +44,8 @@
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
                 <a href="/customer/notice" class="float-right mt-2 mt-md-4 mt-lg-5 body-a"><i class="fas fa-volume-up"></i> Notice</a>
-                <a href="/customer/email" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-envelope"></i> Emails</a>
+                <a href="/customer/email" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a active"><i class="fas fa-envelope"></i> Emails</a>
+                <a href="/customer/history" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-history"></i> History</a>
                 <a href="/customer/cart" class="float-right mt-2 mt-md-4 mt-lg-5 mr-3 body-a"><i class="fas fa-shopping-cart"></i> Cart</a>
             </div>
         </section>
@@ -69,9 +70,10 @@
                 %>
 
 
-                <table class="table table-borderless shadow">
+                <table class="table table-borderless table-hover shadow">
                     <thead>
                       <tr>
+                        <th scope="col">No.</th>
                         <th scope="col">Sender</th>
                         <th scope="col">Receiver</th>
                         <th scope="col">Message</th>
@@ -79,14 +81,15 @@
                     </thead>
                     <tbody>
 
-                    <%
+                    <% var i=1;
                     email.forEach( function(std){ %>
                       <tr>
+                        <th> <%= i %></th>
                         <td> <%= std.sendermail %></td>
                         <td><%= std.receivermail %></td>
                         <td> <%= std.conmessage %></td>
                       </tr>
-                    <%
+                    <% i++;
                         }); 
                     %>
                     
